@@ -14,6 +14,7 @@ const InputField = ({ onSendMessage, disabled }) => {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
+      e.stopPropagation();
       if (input.trim()) {
         onSendMessage(input);
         setInput("");
@@ -27,7 +28,7 @@ const InputField = ({ onSendMessage, disabled }) => {
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         placeholder="Type a message... (Press Enter to send)"
         disabled={disabled}
       />
